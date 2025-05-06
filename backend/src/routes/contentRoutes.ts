@@ -7,7 +7,7 @@ import { authenticate } from "../middleware/authenticate";
 const contentRouter = Router()
 
 contentRouter.post('', authenticate, validate(contentSchema), addContent)
-contentRouter.get('', authenticate, validate(contentSchema), getContent)
+contentRouter.get('', authenticate, getContent)
 contentRouter.delete('', authenticate, removeContent)
 
 
