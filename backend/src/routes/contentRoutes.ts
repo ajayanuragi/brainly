@@ -10,7 +10,4 @@ contentRouter.post('', authenticate, validate(contentSchema), addContent)
 contentRouter.get('', authenticate, getContent)
 contentRouter.delete('', authenticate, removeContent)
 
-
-
-
 export default contentRouter

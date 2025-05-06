@@ -9,8 +9,8 @@ export const signupUser = async (req: Request, res: Response): Promise<void> => 
         res.status(201).json({
             success: true,
             message: 'Signup successful',
-            data: {
-                id: newUser._id,
+            user: {
+                userId: newUser._id,
                 username: newUser.username
             }
         });
@@ -19,7 +19,7 @@ export const signupUser = async (req: Request, res: Response): Promise<void> => 
         if (error.message === 'USER_EXISTS') {
             res.status(409).json({
                 success: false,
-                error: "Username already taken"
+                message: "Username already taken"
             });
             return;
         }
