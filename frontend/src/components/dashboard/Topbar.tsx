@@ -1,7 +1,9 @@
 import { LuShare2, LuPlus } from "react-icons/lu";
+type TopbarProps = {
+    onAddNote: () => void;
+}
 
-
-export function Topbar() {
+export function Topbar({onAddNote}:TopbarProps) {
     return (
         <div className="flex justify-between items-center mb-4">
             <div className="text-3xl font-bold">All Notes</div>
@@ -13,7 +15,7 @@ export function Topbar() {
                 </div>
                 <div
                     className="flex text-white bg-blue-900 py-2 px-4 items-center gap-2 rounded-xl cursor-pointer"
-                >
+                 onClick={onAddNote}>
                     <LuPlus />
                     Add Content
                 </div>

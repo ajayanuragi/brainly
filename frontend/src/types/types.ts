@@ -17,4 +17,10 @@ export type Note = {
     title: string;
     tags: string[];
 };
+export type Content = {
+    type: "document" | "tweet" | "youtube" | "link";
+    link: string;
+    title: string;
+    tags?: string[];
+};
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card } from "./Card";
+import { Card } from "./card/Card";
 import api from "../../api/axios";
 import { Note } from "../../types/types";
 
@@ -18,9 +18,7 @@ export function Main() {
                     setLoading(false);
                     return;
                 }
-                const response = await api.get('/content', {
-                    headers: { Authorization: `Bearer ${token}` }
-                })
+                const response = await api.get('/content')
                 setNotes(response.data.content)
             } catch (error) {
                 console.error('failed to load notes, ' + error)
@@ -41,8 +39,7 @@ export function Main() {
         }
         try {
             await api.delete(`/content`, {
-                headers: { Authorization: `Bearer ${token}` },
-                data: { contentId: id },
+                data: { contentId: id }
             })
             setNotes((prev) => prev.filter((note) => note.id !== id))
         } catch (error) {
@@ -57,14 +54,15 @@ export function Main() {
     if (error) {
         return <div className="text-red-600">{error}</div>;
     }
+
     return (
         <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {notes.length === 0 ? (
                 <p>No content found.</p>
             ) : (
                 notes.map((note) => (
-                    <div className="break-inside-avoid">
-                        <Card key={note.id} note={note} onDelete={handleDelete} />
+                    <div className="break-inside-avoid" key={note.id}>
+                        <Card note={note} onDelete={handleDelete} />
                     </div>
                 ))
             )}

@@ -1,12 +1,12 @@
 import { Tweet } from "react-tweet";
-import { Note } from "../../types/types";
+import { Note } from "../../../types/types";
 import { CardTopbar } from "./CardTopBar";
 
-export function Card({ note, onDelete }: { note: Note, onDelete: (id:string) => void }) {
+export function Card({ note, onDelete }: { note: Note, onDelete: (id: string) => void }) {
+
     const renderContent = () => {
         if (note.type === "tweet") {
             const tweetId = extractTweetId(note.link);
-            console.log(tweetId)
             return tweetId ? (
                 <Tweet id={tweetId} />
             ) : (
@@ -22,6 +22,7 @@ export function Card({ note, onDelete }: { note: Note, onDelete: (id:string) => 
 
             return (
                 <div className="w-full aspect-video mb-2">
+                    <h1 className="pb-2 text-2xl"> {note.title}</h1>
                     <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title={note.title}
@@ -37,7 +38,7 @@ export function Card({ note, onDelete }: { note: Note, onDelete: (id:string) => 
         return (
             <>
                 <h3 className="text-xl font-semibold mb-2">{note.title}</h3>
-                <a href={note.link} className="text-blue-600 break-words" target="_blank" rel="noreferrer">
+                <a href={note.link} className="text-blue-900 break-words" target="_blank" rel="noreferrer">
                     {note.link}
                 </a>
             </>
@@ -56,7 +57,7 @@ export function Card({ note, onDelete }: { note: Note, onDelete: (id:string) => 
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-md w-full max-w-sm">
-            <CardTopbar type={note.type} onDelete={()=> onDelete(note.id)}/>
+            <CardTopbar type={note.type} onDelete={() => onDelete(note.id)} />
             {renderContent()}
             {note.tags?.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1">
