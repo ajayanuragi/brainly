@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Content } from "../../../types/types";
+import { Content, Note } from "../../../types/types";
 import api from "../../../api/axios";
 import { parseTags } from "./utils";
 
 
-export function useAddContentForm(setShowModal: (show: boolean) => void) {
+export function useAddContentForm(
+    setShowModal: (show: boolean) => void,
+    onNoteAdded: (note: Note) => void
+) {
     const [formData, setFormData] = useState<Content>({
         type: "document",
         link: "",
@@ -44,8 +47,8 @@ export function useAddContentForm(setShowModal: (show: boolean) => void) {
                 setError("You have no rights.");
                 return;
             }
-
-            await api.post("/content", formData);
+            const response = await api.post("/content", formData);
+            onNoteAdded(response.data.data)
             setShowModal(false);
             setFormData({ type: "document", link: "", title: "", tags: [] });
         } catch (err) {

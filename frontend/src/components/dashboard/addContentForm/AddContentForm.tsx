@@ -1,11 +1,13 @@
+import { Note } from "../../../types/types";
 import { AddContentFormUI } from "./AddContentFormUI";
 import { useAddContentForm } from "./useAddContentForm";
 
 type Props = {
     setShowModal: (show: boolean) => void;
+    onNoteAdded: (note:Note) => void
 };
 
-export function AddContentForm({ setShowModal }: Props) {
+export function AddContentForm({ setShowModal, onNoteAdded }: Props) {
     const {
         formData,
         error,
@@ -13,7 +15,7 @@ export function AddContentForm({ setShowModal }: Props) {
         handleChange,
         handleTagsChange,
         handleSave,
-    } = useAddContentForm(setShowModal);
+    } = useAddContentForm(setShowModal, onNoteAdded);
 
     return (
         <AddContentFormUI

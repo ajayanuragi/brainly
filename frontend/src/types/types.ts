@@ -24,3 +24,12 @@ export type Content = {
     tags?: string[];
 };
 
+export type MainProps ={
+    notes: Note[];
+    onDelete: (id: string) => void
+}
+export type AuthContextType = {
+    token : string | null;
+    setToken: React.Dispatch<React.SetStateAction<string | null>>
+}
+

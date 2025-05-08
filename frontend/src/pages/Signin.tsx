@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import api from "../api/axios";
+import { useAuth } from "../hooks/useAuth";
 
 export function Signin() {
     const [username, setUsername] = useState<string | number>("");
     const [password, setPassword] = useState<string | number>("");
     const [message, setMessage] = useState<string | null>("");
     const navigate = useNavigate();
+    const { token, setToken } = useAuth()
     useEffect(() => {
-        if (localStorage.getItem("token")) {
+        if (token) {
             navigate("/dashboard");
         }
-    }, [navigate]);
+    }, [token, navigate]);
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -20,8 +22,7 @@ export function Signin() {
             const data = response.data;
 
             if (data.success) {
-                const token = data.token
-                localStorage.setItem("token", token);
+                setToken(data.token)
                 setMessage("Signin successful! Redirecting...");
                 setTimeout(() => navigate("/dashboard"), 1500);
             } else {
