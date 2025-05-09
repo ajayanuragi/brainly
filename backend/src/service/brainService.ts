@@ -49,7 +49,7 @@ export const toggleSharing = async (userId: Types.ObjectId, share: boolean) => {
 export const getSharedContent = async (shareHash: string) => {
     const brainShare = await Brain.findOne({ shareHash, active: true }).populate<{ user: IUser }>('user')
     if (!brainShare || !brainShare.user) {
-        throw new Error('Invalid share link or ');
+        throw new Error('Invalid share link');
     }
 
 

@@ -4,6 +4,7 @@ import { Signup } from "./pages/Signup"
 import { Signin } from "./pages/Signin"
 import ProtectedRoute from "./pages/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
+import { ShareBrain } from "./components/shareBrain/ShareBrain";
 
 function App() {
   const { token } = useAuth()
@@ -14,6 +15,7 @@ function App() {
       <Route path="/dashboard" element={<ProtectedRoute user={token}>
         <Dashboard />
       </ProtectedRoute>} />
+      <Route path="/shared-brain/:hash" element={<ShareBrain />} />
     </Routes>
 
   )

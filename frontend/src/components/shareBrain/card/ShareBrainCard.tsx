@@ -1,9 +1,8 @@
 import { Tweet } from "react-tweet";
 import { Note } from "../../../types/types";
-import { CardTopbar } from "./CardTopBar";
+import { ShareBrainCardTopBar } from "./ShareBrainCardTopBar";
 
-export function Card({ note, onDelete }: { note: Note, onDelete: (id: string) => void }) {
-
+export function ShareBrainCard({ note }: { note: Note }) {
     const renderContent = () => {
         if (note.type === "tweet") {
             const tweetId = extractTweetId(note.link);
@@ -58,7 +57,7 @@ export function Card({ note, onDelete }: { note: Note, onDelete: (id: string) =>
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-md w-full max-w-sm">
-            <CardTopbar title={note.title} type={note.type} onDelete={() => onDelete(note.id)} />
+            <ShareBrainCardTopBar title={note.title} type={note.type} />
             {renderContent()}
             {note.tags?.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1">

@@ -7,7 +7,7 @@ const typeMeta: Record<string, { icon: JSX.Element; label: string }> = {
     youtube: { icon: <LuYoutube />, label: "YouTube" },
     link: { icon: <LuLink />, label: "Link" },
 };
-export function CardTopbar({ type, onDelete }: { type: string, onDelete: () => void }) {
+export function CardTopbar({ title, type, onDelete }: { title:string, type: string, onDelete: () => void }) {
     const meta = typeMeta[type] || { icon: <LuLink />, label: 'Unknown' }
     const handleClick = () => {
         const confirmed = window.confirm("Are you sure you want to delete this note?")
@@ -17,10 +17,10 @@ export function CardTopbar({ type, onDelete }: { type: string, onDelete: () => v
     }
     return (
         <div className="flex items-center justify-between text-gray-400 text-lg mb-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
                 {meta.icon}
-                <div className="text-black">
-                    {meta.label}
+                <div className="text-black max-w-64 truncate text-xl font-semibold">
+                    {title}
                 </div>
             </div>
             <div className="flex">

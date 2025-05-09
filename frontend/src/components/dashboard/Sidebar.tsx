@@ -1,5 +1,4 @@
 import {
-    LuBrain,
     LuTwitter,
     LuNotepadText,
     LuVideo,
@@ -13,7 +12,7 @@ export function Sidebar() {
         <div>
             <div className="flex flex-col h-full">
                 <div className="flex items-center text-blue-900 text-4xl p-4 gap-2 mb-2">
-                    <LuBrain />
+                    <img src="/brain.svg" className="h-10"/>
                     <div className="text-black text-3xl font-bold">Brainly</div>
                 </div>
                 <div className="flex flex-col px-8 space-y-4">

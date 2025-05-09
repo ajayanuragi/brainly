@@ -44,7 +44,7 @@ export function Dashboard() {
 
     return (
         <div className="flex min-h-screen">
-            <div className="w-48">
+            <div className="w-56">
                 <Sidebar />
             </div>
             <div className="p-8 bg-slate-50 w-full">
